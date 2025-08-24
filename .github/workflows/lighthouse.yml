@@ -1,0 +1,48 @@
+name: Lighthouse Performance
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run weekly on Sunday at 2 AM UTC
+    - cron: '0 2 * * 0'
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: apps/website/package-lock.json
+          
+      - name: Install dependencies
+        working-directory: apps/website
+        run: npm ci
+        
+      - name: Build website
+        working-directory: apps/website
+        run: npm run build
+        
+      - name: Serve website
+        working-directory: apps/website
+        run: |
+          npm run preview &
+          sleep 10
+        
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          configPath: './lighthouse.json'
+          uploadArtifacts: true
+          temporaryPublicStorage: true

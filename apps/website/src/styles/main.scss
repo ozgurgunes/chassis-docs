@@ -1,0 +1,206 @@
+// Chassis Design System - Additional Styles
+// The main Chassis CSS is loaded via <link> in the layout
+
+// Main styles for Chassis Documentation Site
+// Built using the Chassis CSS framework with design tokens
+
+// Hero section with gradient background using Chassis tokens
+.hero-section {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, var(--cx-primary) 0%, var(--cx-secondary) 100%);
+  color: var(--cx-primary-contrast);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/images/grid-pattern.svg') repeat;
+    opacity: 0.1;
+    pointer-events: none;
+  }
+  
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+  
+  h1 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: var(--cx-space-large);
+  }
+  
+  .lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto var(--cx-space-xlarge);
+  }
+}
+
+// Enhanced card styles using Chassis context system
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
+  box-shadow: var(--cx-box-shadow, 0 0.125rem 0.5rem rgba(0, 0, 0, 0.075));
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--cx-box-shadow, 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15));
+  }
+  
+  .card-header {
+    background: var(--cx-bg-evident);
+    border-bottom: 1px solid var(--cx-border-subtle);
+    font-weight: 600;
+  }
+}
+
+// Context showcase animations
+.notification {
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// Button enhancements
+.button {
+  transition: all 0.2s ease;
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+  
+  &.large {
+    padding: var(--cx-space-large) var(--cx-space-xlarge);
+    font-size: 1.125rem;
+  }
+  
+  &.small {
+    padding: var(--cx-space-small) var(--cx-space-medium);
+    font-size: 0.875rem;
+  }
+}
+
+// Icon enhancements
+.chassis-icon {
+  font-style: normal;
+  
+  &.chassis-icon-rocket::before { content: "🚀"; }
+  &.chassis-icon-eye::before { content: "👁"; }
+  &.chassis-icon-palette::before { content: "🎨"; }
+  &.chassis-icon-smartphone::before { content: "📱"; }
+  &.chassis-icon-code::before { content: "💻"; }
+  &.chassis-icon-package::before { content: "📦"; }
+  &.chassis-icon-lightbulb::before { content: "💡"; }
+  &.chassis-icon-book-open::before { content: "📖"; }
+  &.chassis-icon-book::before { content: "📚"; }
+  &.chassis-icon-layers::before { content: "📋"; }
+  &.chassis-icon-brand-github::before { content: "🐙"; }
+  &.chassis-icon-brand-twitter::before { content: "🐦"; }
+  &.chassis-icon-brand-discord::before { content: "💬"; }
+  &.chassis-icon-brand-figma::before { content: "🎨"; }
+}
+
+// Badge enhancements
+.badge {
+  font-weight: 500;
+  padding: var(--cx-space-small) var(--cx-space-medium);
+  
+  &.small {
+    padding: var(--cx-space-xsmall) var(--cx-space-small);
+    font-size: 0.75rem;
+  }
+}
+
+// Code block styling
+pre {
+  border-radius: var(--cx-border-radius, 0.375rem);
+  font-family: 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  
+  code {
+    color: #e2e8f0;
+    background: none;
+    padding: 0;
+  }
+}
+
+// Responsive improvements
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 50vh;
+    text-align: center;
+    
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    .lead {
+      font-size: 1.125rem;
+    }
+  }
+  
+  .button.large {
+    padding: var(--cx-space-medium) var(--cx-space-large);
+    font-size: 1rem;
+  }
+}
+
+// Dark theme support (when chassis dark theme is active)
+[data-cx-theme="dark"] {
+  .hero-section {
+    background: linear-gradient(135deg, var(--cx-primary) 0%, var(--cx-secondary) 100%);
+  }
+  
+  .card {
+    box-shadow: var(--cx-box-shadow, 0 0.125rem 0.5rem rgba(255, 255, 255, 0.075));
+    
+    &:hover {
+      box-shadow: var(--cx-box-shadow, 0 0.5rem 1.5rem rgba(255, 255, 255, 0.15));
+    }
+  }
+}
+
+// Custom animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card,
+.notification {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+// Print styles
+@media print {
+  .hero-section {
+    background: none !important;
+    color: black !important;
+    min-height: auto !important;
+  }
+  
+  .button,
+  .badge {
+    border: 1px solid #000 !important;
+    background: none !important;
+    color: black !important;
+  }
+}

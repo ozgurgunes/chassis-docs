@@ -1,0 +1,55 @@
+{
+  "name": "chassis-docs",
+  "version": "1.0.0",
+  "description": "Central documentation and showcase website for Chassis Design System",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/website",
+    "build": "node tools/build.js all",
+    "build:website": "node tools/build.js website",
+    "build:examples": "node tools/build.js examples",
+    "preview": "npm run preview --workspace=apps/website",
+    "sync:all": "node scripts/sync-all.js",
+    "deploy": "node scripts/deploy.js",
+    "clean": "node tools/build.js clean",
+    "validate": "node tools/build.js validate",
+    "example:vanilla": "node tools/build.js example vanilla-html",
+    "example:react": "node tools/build.js example react-app",
+    "test": "echo \"No tests specified\" && exit 0",
+    "postinstall": "npm run sync:all"
+  },
+  "workspaces": [
+    "apps/website",
+    "examples/*"
+  ],
+  "keywords": [
+    "design-system",
+    "chassis",
+    "documentation",
+    "css-framework",
+    "design-tokens",
+    "figma",
+    "multi-platform"
+  ],
+  "author": "Chassis Design System",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ozgurgunes/chassis-docs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ozgurgunes/chassis-docs/issues"
+  },
+  "homepage": "https://chassis.design",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "dependencies": {
+    "@chassis/tokens": "file:vendor/tokens",
+    "@chassis/css": "file:vendor/css"
+  }
+}

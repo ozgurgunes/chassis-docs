@@ -1,0 +1,338 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="py-4 bg-dark text-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <img src="/images/chassis-logo-white.svg" alt="Chassis Design System" width="120" height="28" class="mb-3" />
+        <p class="text-muted mb-3">
+          Enterprise-grade design system for multi-brand, multi-platform applications.
+        </p>
+        <div class="d-flex gap-2">
+          <a href="https://github.com/ozgurgunes/chassis-tokens" 
+             class="btn btn-outline-light btn-sm"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="GitHub">
+            GitHub
+          </a>
+        </div>
+      </div>
+      
+      <div class="col-lg-8">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <h5 class="fw-bold mb-3">Documentation</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="/getting-started" class="text-light text-decoration-none">Getting Started</a></li>
+              <li class="mb-2"><a href="/tokens" class="text-light text-decoration-none">Design Tokens</a></li>
+              <li class="mb-2"><a href="/components" class="text-light text-decoration-none">Components</a></li>
+              <li class="mb-2"><a href="/icons" class="text-light text-decoration-none">Icons</a></li>
+            </ul>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <h5 class="fw-bold mb-3">Tools</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="/playground" class="text-light text-decoration-none">Token Playground</a></li>
+              <li class="mb-2"><a href="/examples" class="text-light text-decoration-none">Examples</a></li>
+              <li class="mb-2"><a href="/figma" class="text-light text-decoration-none">Figma Integration</a></li>
+              <li class="mb-2"><a href="/migration" class="text-light text-decoration-none">Migration Guide</a></li>
+            </ul>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <h5 class="fw-bold mb-3">Resources</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="https://github.com/ozgurgunes/chassis-tokens" target="_blank" rel="noopener noreferrer" class="text-light text-decoration-none">GitHub</a></li>
+              <li class="mb-2"><a href="https://www.npmjs.com/package/@ozgurgunes/chassis-tokens" target="_blank" rel="noopener noreferrer" class="text-light text-decoration-none">npm Package</a></li>
+              <li class="mb-2"><a href="/changelog" class="text-light text-decoration-none">Changelog</a></li>
+              <li class="mb-2"><a href="/license" class="text-light text-decoration-none">License</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <hr class="my-4 border-secondary">
+    
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <p class="text-muted mb-0">
+          © {currentYear} Chassis Design System. Licensed under 
+          <a href="/license" class="text-light text-decoration-none">MIT License</a>.
+        </p>
+      </div>
+      <div class="col-md-6 text-md-end">
+        <span class="text-muted me-3">Built with</span>
+        <a href="https://astro.build" 
+           class="text-light text-decoration-none me-3"
+           target="_blank"
+           rel="noopener noreferrer">
+          Astro
+        </a>
+        <a href="https://amzn.github.io/style-dictionary/" 
+           class="text-light text-decoration-none"
+           target="_blank"
+           rel="noopener noreferrer">
+          Style Dictionary
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__content">
+      <div class="footer__brand">
+        <img src="/images/chassis-logo-default.svg" alt="Chassis Design System" width="120" height="28" />
+        <p class="footer__description">
+          Enterprise-grade design system for multi-brand, multi-platform applications.
+        </p>
+        <div class="footer__social">
+          <a href="https://github.com/ozgurgunes/chassis-tokens" 
+             class="footer__social-link"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="GitHub">
+            <i class="icon-github-outline" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer__links">
+        <div class="footer__section">
+          <h3 class="footer__section-title">Documentation</h3>
+          <ul class="footer__section-links">
+            <li><a href="/getting-started">Getting Started</a></li>
+            <li><a href="/tokens">Design Tokens</a></li>
+            <li><a href="/components">Components</a></li>
+            <li><a href="/icons">Icons</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer__section">
+          <h3 class="footer__section-title">Tools</h3>
+          <ul class="footer__section-links">
+            <li><a href="/playground">Token Playground</a></li>
+            <li><a href="/examples">Examples</a></li>
+            <li><a href="/figma">Figma Integration</a></li>
+            <li><a href="/migration">Migration Guide</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer__section">
+          <h3 class="footer__section-title">Resources</h3>
+          <ul class="footer__section-links">
+            <li><a href="https://github.com/ozgurgunes/chassis-tokens" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://www.npmjs.com/package/@ozgurgunes/chassis-tokens" target="_blank" rel="noopener noreferrer">npm Package</a></li>
+            <li><a href="/changelog">Changelog</a></li>
+            <li><a href="/license">License</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer__bottom">
+      <div class="footer__bottom-content">
+        <p class="footer__copyright">
+          © {currentYear} Chassis Design System. Licensed under 
+          <a href="/license" class="footer__license-link">MIT License</a>.
+        </p>
+        <div class="footer__tech">
+          <span class="footer__tech-label">Built with</span>
+          <a href="https://astro.build" 
+             class="footer__tech-link"
+             target="_blank"
+             rel="noopener noreferrer">
+            <i class="icon-star-outline" aria-hidden="true"></i>
+            Astro
+          </a>
+          <a href="https://amzn.github.io/style-dictionary/" 
+             class="footer__tech-link"
+             target="_blank"
+             rel="noopener noreferrer">
+            <i class="icon-palette-outline" aria-hidden="true"></i>
+            Style Dictionary
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style lang="scss">
+  @import '../styles/main.scss';
+  
+  .footer {
+    background-color: $cx-color-theme-background-secondary;
+    border-top: 1px solid $cx-color-theme-border-primary;
+    padding: $cx-spacing-base-2xlarge 0 $cx-spacing-base-large 0;
+    margin-top: auto;
+    
+    &__content {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: $cx-spacing-base-2xlarge;
+      margin-bottom: $cx-spacing-base-xlarge;
+      
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: $cx-spacing-base-xlarge;
+      }
+    }
+    
+    &__brand {
+      max-width: 300px;
+      
+      img {
+        margin-bottom: $cx-spacing-base-medium;
+      }
+    }
+    
+    &__description {
+      color: $cx-color-theme-text-secondary;
+      margin-bottom: $cx-spacing-base-medium;
+      line-height: $cx-line-height-base-relaxed;
+    }
+    
+    &__social {
+      display: flex;
+      gap: $cx-spacing-base-small;
+    }
+    
+    &__social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      background-color: $cx-color-theme-background-primary;
+      border: 1px solid $cx-color-theme-border-primary;
+      border-radius: $cx-border-radius-base-medium;
+      color: $cx-color-theme-text-secondary;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        color: $cx-color-theme-accent-primary;
+        border-color: $cx-color-theme-accent-primary;
+        text-decoration: none;
+      }
+      
+      i {
+        font-size: $cx-font-size-base-large;
+      }
+    }
+    
+    &__links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: $cx-spacing-base-xlarge;
+      
+      @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+        gap: $cx-spacing-base-large;
+      }
+    }
+    
+    &__section-title {
+      font-size: $cx-font-size-base-medium;
+      font-weight: $cx-font-weight-base-semibold;
+      color: $cx-color-theme-text-primary;
+      margin-bottom: $cx-spacing-base-medium;
+    }
+    
+    &__section-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      
+      li {
+        margin-bottom: $cx-spacing-base-small;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      
+      a {
+        color: $cx-color-theme-text-secondary;
+        font-size: $cx-font-size-base-small;
+        transition: color 0.2s ease;
+        
+        &:hover {
+          color: $cx-color-theme-accent-primary;
+          text-decoration: none;
+        }
+      }
+    }
+    
+    &__bottom {
+      padding-top: $cx-spacing-base-large;
+      border-top: 1px solid $cx-color-theme-border-primary;
+    }
+    
+    &__bottom-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: $cx-spacing-base-medium;
+      
+      @media (max-width: 640px) {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    
+    &__copyright {
+      color: $cx-color-theme-text-secondary;
+      font-size: $cx-font-size-base-small;
+      margin: 0;
+    }
+    
+    &__license-link {
+      color: $cx-color-theme-accent-primary;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    
+    &__tech {
+      display: flex;
+      align-items: center;
+      gap: $cx-spacing-base-small;
+      flex-wrap: wrap;
+    }
+    
+    &__tech-label {
+      color: $cx-color-theme-text-secondary;
+      font-size: $cx-font-size-base-small;
+    }
+    
+    &__tech-link {
+      display: flex;
+      align-items: center;
+      gap: $cx-spacing-base-xsmall;
+      color: $cx-color-theme-text-secondary;
+      font-size: $cx-font-size-base-small;
+      padding: $cx-spacing-base-xsmall $cx-spacing-base-small;
+      border-radius: $cx-border-radius-base-small;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        color: $cx-color-theme-accent-primary;
+        background-color: $cx-color-theme-background-primary;
+        text-decoration: none;
+      }
+      
+      i {
+        font-size: $cx-font-size-base-small;
+      }
+    }
+  }
+</style>
