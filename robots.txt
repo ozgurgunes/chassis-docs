@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /
+
+# Prevent all search engine indexing
+# This site is under development
