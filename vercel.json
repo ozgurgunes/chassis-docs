@@ -1,0 +1,58 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "apps/website/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist",
+        "buildCommand": "npm run build"
+      }
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/chassis-assets/(.*)",
+      "destination": "https://chassis-assets.vercel.app/$1"
+    },
+    {
+      "source": "/chassis-css/(.*)",
+      "destination": "https://chassis-css.vercel.app/$1"
+    },
+    {
+      "source": "/chassis-tokens/(.*)",
+      "destination": "https://chassis-tokens.vercel.app/$1"
+    },
+    {
+      "source": "/chassis-figma/(.*)",
+      "destination": "https://chassis-figma.vercel.app/$1"
+    },
+    {
+      "source": "/chassis-icons/(.*)",
+      "destination": "https://chassis-icons.vercel.app/$1"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ]
+}
