@@ -4,11 +4,11 @@
   "description": "Central documentation and showcase website for Chassis Design System",
   "type": "module",
   "scripts": {
-    "dev": "npm run dev --workspace=apps/website",
+    "dev": "pnpm --filter=astro dev",
     "build": "node tools/build.js all",
     "build:website": "node tools/build.js website",
     "build:examples": "node tools/build.js examples",
-    "preview": "npm run preview --workspace=apps/website",
+    "preview": "pnpm --filter=astro preview",
     "sync:all": "node scripts/sync-all.js",
     "deploy": "node scripts/deploy.js",
     "clean": "node tools/build.js clean",
@@ -18,10 +18,6 @@
     "test": "echo \"No tests specified\" && exit 0",
     "postinstall": "npm run sync:all"
   },
-  "workspaces": [
-    "apps/website",
-    "examples/*"
-  ],
   "keywords": [
     "design-system",
     "chassis",
