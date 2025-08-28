@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "node ../../scripts/sync-icons.js && astro build",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "sync-assets": "node scripts/sync-assets.js"

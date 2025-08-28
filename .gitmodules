@@ -13,7 +13,3 @@
 	path = vendor/assets
 	url = https://github.com/ozgurgunes/chassis-assets.git
 	branch = app/docs
-[submodule "vendor/icons"]
-	path = vendor/icons
-	url = https://github.com/ozgurgunes/chassis-icons.git
-	branch = staging
