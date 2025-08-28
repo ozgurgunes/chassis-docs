@@ -3,7 +3,7 @@
   "rewrites": [
     {
         "source": "/icons/(.*)",
-        "destination": "https://site-lz9zqufyy-ozgurgunes-projects.vercel.app/$1"
+        "destination": "https://chassis-icons.vercel.app/$1"
       },
     {
       "source": "/chassis-assets/(.*)",
