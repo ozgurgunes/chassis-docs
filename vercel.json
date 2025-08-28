@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/test-redirect",
+      "destination": "https://chassis-icons.vercel.app/icons/",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/icons/(.*)",
