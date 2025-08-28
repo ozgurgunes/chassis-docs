@@ -7,19 +7,36 @@ import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
-const ICONS_PATH = join(ROOT, 'vendor/icons')
+// Try both submodule and parent directory
+const ICONS_PATH = join(ROOT, '../chassis-icons')
+const FALLBACK_ICONS_PATH = join(ROOT, 'vendor/icons')
 const OUTPUT_PATH = join(ROOT, 'apps/website/public/icons')
 
 console.log('🔄 Syncing icons from chassis-icons...')
 
 try {
-  // Install dependencies first
-  console.log('Installing chassis-icons dependencies...')
-  execSync('npm install', { cwd: ICONS_PATH, stdio: 'inherit' })
+  // Try to use the working parent directory first
+  let iconsPath = ICONS_PATH
+  let sourceIcons = join(ICONS_PATH, '_site/icons')
   
-  // Build icons
-  console.log('Building chassis-icons...')
-  execSync('npm run build:site', { cwd: ICONS_PATH, stdio: 'inherit' })
+  console.log(`Checking for icons at ${sourceIcons}`)
+  try {
+    execSync(`ls ${sourceIcons}`, { stdio: 'pipe' })
+    console.log('Using pre-built icons from parent directory')
+  } catch (e) {
+    console.log('No pre-built icons found, trying submodule...')
+    iconsPath = FALLBACK_ICONS_PATH
+    
+    // Install dependencies and build
+    console.log('Installing chassis-icons dependencies...')
+    execSync('npm install --silent', { cwd: iconsPath })
+    
+    console.log('Building chassis-icons...')
+    execSync('npm run build:site', { cwd: iconsPath })
+    
+    // Update source path for submodule
+    sourceIcons = join(iconsPath, '_site/icons')
+  }
   
   // Remove existing icons
   try {
@@ -29,7 +46,6 @@ try {
   }
   
   // Copy built icons
-  const sourceIcons = join(ICONS_PATH, '_site/icons')
   console.log(`Copying from ${sourceIcons} to ${OUTPUT_PATH}`)
   
   execSync(`cp -r "${sourceIcons}" "${dirname(OUTPUT_PATH)}"`, { stdio: 'inherit' })
