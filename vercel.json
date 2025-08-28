@@ -2,12 +2,12 @@
   "version": 2,
   "rewrites": [
     {
-      "source": "/icons/(.*)",
-      "destination": "https://chassis-icons.vercel.app/icons/$1"
+      "source": "/icons/:path*",
+      "destination": "https://chassis-icons.vercel.app/icons/:path*"
     },
     {
       "source": "/icons",
-      "destination": "https://chassis-icons.vercel.app/icons/"
+      "destination": "https://chassis-icons.vercel.app/icons/index.html"
     },
     {
       "source": "/chassis-assets/(.*)",
