@@ -2,9 +2,9 @@
   "version": 2,
   "rewrites": [
     {
-      "source": "/icons/(.*)",
-      "destination": "https://chassis-icons-git-staging-ozgurgunes.vercel.app/$1"
-    },
+        "source": "/icons/(.*)",
+        "destination": "https://site-lz9zqufyy-ozgurgunes-projects.vercel.app/$1"
+      },
     {
       "source": "/chassis-assets/(.*)",
       "destination": "https://chassis-assets.vercel.app/$1"
