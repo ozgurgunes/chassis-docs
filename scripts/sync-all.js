@@ -18,7 +18,7 @@ console.log('🔄 Syncing all Chassis submodules...\n');
 const submodules = [
   { name: 'chassis-tokens', path: 'vendor/tokens' },
   { name: 'chassis-css', path: 'vendor/css' },
-  { name: 'chassis-figma', path: 'vendor/figma' },
+  // { name: 'chassis-figma', path: 'vendor/figma' }, // Temporarily disabled for Vercel deployment
   { name: 'chassis-assets', path: 'vendor/assets' }
 ];
 
