@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "pnpm --filter=astro dev",
-    "build": "node scripts/sync-icons.js && node tools/build.js all",
-    "build:website": "node scripts/sync-icons.js && node tools/build.js website",
+    "build": "node scripts/sync-all.js && node scripts/sync-icons.js && node tools/build.js all",
+    "build:website": "node scripts/sync-all.js && node scripts/sync-icons.js && node tools/build.js website",
     "build:examples": "node tools/build.js examples",
     "preview": "pnpm --filter=astro preview",
     "sync:all": "node scripts/sync-all.js",
