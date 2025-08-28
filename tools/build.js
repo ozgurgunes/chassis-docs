@@ -127,8 +127,24 @@ class ChassisBuilder {
 
   updateSubmodules() {
     this.log('Updating git submodules...', 'info');
-    this.runCommand('git submodule update --remote --merge');
-    this.log('Submodules updated', 'success');
+    
+    try {
+      // First try to initialize submodules
+      this.runCommand('git submodule init', '.', true);
+      this.runCommand('git submodule update --remote --merge');
+      this.log('Submodules updated', 'success');
+    } catch (error) {
+      this.log('Submodule update failed, trying alternative approach...', 'warning');
+      
+      // If submodule update fails, try to sync using the sync script
+      try {
+        this.runCommand('npm run sync:all');
+        this.log('Submodules synced via sync script', 'success');
+      } catch (syncError) {
+        this.log('Both submodule update and sync failed', 'error');
+        throw syncError;
+      }
+    }
   }
 
   validateBuild() {
