@@ -4,6 +4,7 @@
 
 $prefix: cx- !default;
 // Import tokens from the Chassis Tokens package  
+@import '_settings.scss';
 @import "../../../../vendor/tokens/dist/tokens/web/chassis-docs/allTokens.scss";
 // Import CSS framework (now tokens are available)
-@import '../../../../vendor/css/scss/chassis.scss';
+@import '../../../../vendor/css/scss/core.scss';
