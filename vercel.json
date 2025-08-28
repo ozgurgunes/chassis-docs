@@ -7,7 +7,7 @@
     },
     {
       "source": "/icons",
-      "destination": "https://chassis-icons.vercel.app/icons/index.html"
+      "destination": "https://chassis-icons.vercel.app/icons/"
     },
     {
       "source": "/chassis-assets/(.*)",
