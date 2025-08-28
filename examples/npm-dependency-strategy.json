@@ -1,0 +1,12 @@
+// chassis-css package.json approach
+{
+  "name": "@chassis/css",
+  "dependencies": {
+    "@chassis/tokens": "^1.0.0"  // Published npm package, not submodule
+  },
+  "devDependencies": {
+    "@chassis/tokens": "file:../tokens"  // For local development
+  }
+}
+
+// This removes the circular submodule dependency entirely

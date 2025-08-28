@@ -1,0 +1,14 @@
+{
+  "name": "chassis-design-system",
+  "scripts": {
+    "build:tokens": "cd vendor/tokens && npm run build",
+    "build:css": "npm run sync:tokens && cd vendor/css && npm run build",
+    "build:all": "npm run build:tokens && npm run build:css",
+    "sync:tokens": "node scripts/sync-tokens.js",
+    "dev": "npm run build:tokens && npm run sync:tokens && npm run dev:css",
+    "dev:css": "cd vendor/css && npm run dev"
+  },
+  "dependencies": {
+    "concurrently": "^8.0.0"
+  }
+}

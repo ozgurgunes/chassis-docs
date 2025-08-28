@@ -1,0 +1,10 @@
+# .gitmodules - Remove circular dependencies
+[submodule "packages/tokens"]
+        path = packages/tokens
+        url = https://github.com/ozgurgunes/chassis-tokens.git
+        branch = app/docs
+[submodule "packages/css"]
+        path = packages/css
+        url = https://github.com/ozgurgunes/chassis-css.git
+        branch = app/docs
+# Note: No circular references - each package is independent

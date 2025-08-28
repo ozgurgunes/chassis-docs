@@ -10,6 +10,7 @@
     "build:examples": "node tools/build.js examples",
     "preview": "pnpm --filter=astro preview",
     "sync:all": "node scripts/sync-all.js",
+    "sync:submodules": "./scripts/update-submodules.sh",
     "deploy": "node scripts/deploy.js",
     "clean": "node tools/build.js clean",
     "validate": "node tools/build.js validate",
