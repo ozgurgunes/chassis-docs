@@ -1,18 +1,5 @@
 {
-  "functions": {
-    "apps/website/dist/**": {
-      "includeFiles": "apps/website/dist/**"
-    }
-  },
   "rewrites": [
-    {
-      "source": "/icons/(.*)",
-      "destination": "https://chassis-icons.vercel.app/icons/$1"
-    },
-    {
-      "source": "/icons",
-      "destination": "https://chassis-icons.vercel.app/icons/"
-    },
     {
       "source": "/chassis-assets/(.*)",
       "destination": "https://chassis-assets.vercel.app/$1"
