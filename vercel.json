@@ -18,7 +18,7 @@
       "destination": "https://chassis-figma.vercel.app/$1"
     },
     {
-      "source": "/chassis-icons/(.*)",
+      "source": "/icons/(.*)",
       "destination": "https://chassis-icons.vercel.app/$1"
     },
     {
