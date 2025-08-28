@@ -3,7 +3,7 @@
   "buildCommand": "npm ci && npm run build",
   "outputDirectory": "apps/website/dist",
   "installCommand": "npm install",
-  "nodeVersion": "18.x",
+  "framework": null,
   "rewrites": [
     {
       "source": "/chassis-assets/(.*)",
