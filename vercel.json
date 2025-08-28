@@ -26,10 +26,6 @@
       "destination": "https://chassis-figma.vercel.app/$1"
     },
     {
-      "source": "/chassis-icons/(.*)",
-      "destination": "https://chassis-icons.vercel.app/$1"
-    },
-    {
       "source": "/api/(.*)",
       "destination": "/api/$1"
     }
