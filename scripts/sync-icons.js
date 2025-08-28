@@ -7,15 +7,19 @@ import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
-const ICONS_PATH = join(ROOT, '../chassis-icons')
+const ICONS_PATH = join(ROOT, 'vendor/icons')
 const OUTPUT_PATH = join(ROOT, 'apps/website/public/icons')
 
 console.log('🔄 Syncing icons from chassis-icons...')
 
 try {
+  // Install dependencies first
+  console.log('Installing chassis-icons dependencies...')
+  execSync('npm install', { cwd: ICONS_PATH, stdio: 'inherit' })
+  
   // Build icons
   console.log('Building chassis-icons...')
-  execSync('pnpm build:site', { cwd: ICONS_PATH, stdio: 'inherit' })
+  execSync('npm run build:site', { cwd: ICONS_PATH, stdio: 'inherit' })
   
   // Remove existing icons
   try {

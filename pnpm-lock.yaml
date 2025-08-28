@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@chassis/css':
         specifier: file:vendor/css
-        version: css@file:vendor/css
+        version: '@ozgurgunes/chassis-css@file:vendor/css(@popperjs/core@2.11.8)'
       '@chassis/tokens':
         specifier: file:vendor/tokens
         version: '@ozgurgunes/chassis-tokens@file:vendor/tokens'
@@ -643,6 +643,11 @@ packages:
   '@oslojs/encoding@1.1.0':
     resolution: {integrity: sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==}
 
+  '@ozgurgunes/chassis-css@file:vendor/css':
+    resolution: {directory: vendor/css, type: directory}
+    peerDependencies:
+      '@popperjs/core': ^2.11.8
+
   '@ozgurgunes/chassis-tokens@file:vendor/tokens':
     resolution: {directory: vendor/tokens, type: directory}
 
@@ -727,6 +732,9 @@ packages:
   '@parcel/watcher@2.5.1':
     resolution: {integrity: sha512-dfUnCxiN9H4ap84DvD2ubjw+3vUNpstxa0TneY/Paat8a3R4uQZDLSvWjmznAY/DoahqTHl9V46HF/Zs3F29pg==}
     engines: {node: '>= 10.0.0'}
+
+  '@popperjs/core@2.11.8':
+    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
   '@rolldown/pluginutils@1.0.0-beta.27':
     resolution: {integrity: sha512-+d0F4MKMCbeVUJwG96uQ4SgAznZNSq93I3V+9NHA4OpvqG8mRCpGdKmK8l/dl02h2CCDHwW2FqilnTyDcAnqjA==}
@@ -1179,9 +1187,6 @@ packages:
   css-tree@3.1.0:
     resolution: {integrity: sha512-0eW44TGN5SQXU1mWSkKwFstI/22X2bG1nYzZTYMAWjylYURhse752YgbE4Cx46AC+bAvI+/dYTPRk1LqSUnu6w==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
-
-  css@file:vendor/css:
-    resolution: {directory: vendor/css, type: directory}
 
   cssesc@3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
@@ -3058,6 +3063,10 @@ snapshots:
 
   '@oslojs/encoding@1.1.0': {}
 
+  '@ozgurgunes/chassis-css@file:vendor/css(@popperjs/core@2.11.8)':
+    dependencies:
+      '@popperjs/core': 2.11.8
+
   '@ozgurgunes/chassis-tokens@file:vendor/tokens': {}
 
   '@parcel/watcher-android-arm64@2.5.1':
@@ -3120,6 +3129,8 @@ snapshots:
       '@parcel/watcher-win32-ia32': 2.5.1
       '@parcel/watcher-win32-x64': 2.5.1
     optional: true
+
+  '@popperjs/core@2.11.8': {}
 
   '@rolldown/pluginutils@1.0.0-beta.27': {}
 
@@ -3676,8 +3687,6 @@ snapshots:
     dependencies:
       mdn-data: 2.12.2
       source-map-js: 1.2.1
-
-  css@file:vendor/css: {}
 
   cssesc@3.0.0: {}
 
