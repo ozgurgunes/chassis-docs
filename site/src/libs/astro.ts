@@ -144,12 +144,8 @@ function copyChassisAssets() {
   const source = getChassisAssetsFsPath()
   const destination = path.join(getDocsPublicFsPath(), 'assets')
 
-  // Check if source directory exists before copying
-  if (!fs.existsSync(source)) {
-    console.warn(`⚠️  Chassis assets not found at ${source}, skipping copy`)
-    return
-  }
-
+  // fs.mkdirSync(destination, { recursive: true })
+  // copyStaticRecursively(source, destination)
   fs.mkdirSync(destination, { recursive: true })
   fs.cpSync(source, destination, { recursive: true })
 }
