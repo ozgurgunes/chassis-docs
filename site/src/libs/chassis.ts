@@ -19,7 +19,8 @@ export function getChassisCssProps(direction: 'rtl' | undefined) {
     rel: 'stylesheet'
   }
 
-  if (import.meta.env.PROD) {
+  // Only apply integrity checks for CDN URLs (starting with 'http')
+  if (import.meta.env.PROD && cxCssLinkHref.startsWith('http')) {
     cxCssLinkProps.integrity = direction === 'rtl' ? getConfig().cdn.css_rtl_hash : getConfig().cdn.css_hash
   }
 
@@ -39,7 +40,8 @@ export function getChassisJsProps() {
     src: cxJsScriptSrc
   }
 
-  if (import.meta.env.PROD) {
+  // Only apply integrity checks for CDN URLs (starting with 'http')
+  if (import.meta.env.PROD && cxJsScriptSrc.startsWith('http')) {
     cxJsLinkProps.integrity = getConfig().cdn.js_bundle_hash
   }
 
