@@ -1,7 +1,6 @@
 {
   "version": 2,
   "buildCommand": "pnpm build",
-  "outputDirectory": "./_site",
   "rewrites": [
     {
       "source": "/chassis-assets/(.*)",
