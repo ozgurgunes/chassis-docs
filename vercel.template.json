@@ -1,31 +1,31 @@
 {
   "version": 2,
-  "buildCommand": "pnpm build",
+  "buildCommand": "node scripts/generate-vercel-config.js && pnpm build",
   "outputDirectory": "_site",
   "rewrites": [
     {
       "source": "/docs/assets/(.*)",
-      "destination": "https://chassis-assets.vercel.app/$1"
+      "destination": "{{ASSETS_URL}}/$1"
     },
     {
       "source": "/docs/css/(.*)",
-      "destination": "https://chassis-css.vercel.app/$1"
+      "destination": "{{CSS_URL}}/$1"
     },
     {
       "source": "/docs/tokens/(.*)",
-      "destination": "https://chassis-tokens.vercel.app/$1"
+      "destination": "{{TOKENS_URL}}/$1"
     },
     {
       "source": "/docs/figma/(.*)",
-      "destination": "https://chassis-figma.vercel.app/$1"
+      "destination": "{{FIGMA_URL}}/$1"
     },
     {
       "source": "/docs/icons",
-      "destination": "https://chassis-icons.vercel.app/"
+      "destination": "{{ICONS_URL}}/"
     },
     {
       "source": "/docs/icons/(.*)",
-      "destination": "https://chassis-icons.vercel.app/$1"
+      "destination": "{{ICONS_URL}}/$1"
     },
     {
       "source": "/api/(.*)",
