@@ -1,11 +1,3 @@
-[submodule "vendor/tokens"]
-	path = vendor/tokens
-	url = https://github.com/ozgurgunes/chassis-tokens.git
-	branch = app/docs
-[submodule "vendor/css"]
-	path = vendor/css
-	url = https://github.com/ozgurgunes/chassis-css.git
-	branch = app/docs
 [submodule "vendor/assets"]
 	path = vendor/assets
 	url = https://github.com/ozgurgunes/chassis-assets.git

@@ -2,23 +2,23 @@
   "version": 2,
   "rewrites": [
     {
-      "source": "/chassis-assets/(.*)",
+      "source": "/docs/assets/(.*)",
       "destination": "https://chassis-assets.vercel.app/$1"
     },
     {
-      "source": "/chassis-css/(.*)",
+      "source": "/docs/css/(.*)",
       "destination": "https://chassis-css.vercel.app/$1"
     },
     {
-      "source": "/chassis-tokens/(.*)",
+      "source": "/docs/tokens/(.*)",
       "destination": "https://chassis-tokens.vercel.app/$1"
     },
     {
-      "source": "/chassis-figma/(.*)",
+      "source": "/docs/figma/(.*)",
       "destination": "https://chassis-figma.vercel.app/$1"
     },
     {
-      "source": "/icons/(.*)",
+      "source": "/docs/icons/(.*)",
       "destination": "https://chassis-icons.vercel.app/$1"
     },
     {

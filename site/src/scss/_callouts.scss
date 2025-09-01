@@ -1,0 +1,40 @@
+//
+// Callouts
+//
+
+.cxd-callout {
+  --#{$prefix}link-main-color-rgb: var(--cxd-callout-link);
+  --#{$prefix}code-color: var(--cxd-callout-code-color);
+
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  color: var(--cxd-callout-color, inherit);
+  background-color: var(--cxd-callout-bg, var(--cx-gray-100));
+  border-left: .25rem solid var(--cxd-callout-border, var(--cx-gray-300));
+
+  h4 {
+    margin-bottom: .25rem;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  + .cxd-callout {
+    margin-top: -.25rem;
+  }
+
+  .highlight {
+    background-color: rgba($black, .05);
+  }
+}
+
+// Variations
+@each $variant in $cxd-callout-variants {
+  .cxd-callout-#{$variant} {
+    --cxd-callout-color: var(--cx-#{$variant}-fg-main);
+    --cxd-callout-bg: var(--cx-#{$variant}-bg-even);
+    --cxd-callout-border: var(--cx-#{$variant}-border-subtle);
+  }
+}
