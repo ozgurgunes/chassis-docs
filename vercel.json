@@ -1,5 +1,62 @@
 {
   "version": 2,
   "buildCommand": "pnpm build",
-  "outputDirectory": "_site"
+  "outputDirectory": "_site",
+  "rewrites": [
+    {
+      "source": "/docs/assets/(.*)",
+      "destination": "https://chassis-assets.vercel.app/$1"
+    },
+    {
+      "source": "/docs/css/(.*)",
+      "destination": "https://chassis-css.vercel.app/$1"
+    },
+    {
+      "source": "/docs/tokens/(.*)",
+      "destination": "https://chassis-tokens.vercel.app/$1"
+    },
+    {
+      "source": "/docs/figma/(.*)",
+      "destination": "https://chassis-figma.vercel.app/$1"
+    },
+    {
+      "source": "/docs/icons",
+      "destination": "https://chassis-icons.vercel.app/"
+    },
+    {
+      "source": "/docs/icons/(.*)",
+      "destination": "https://chassis-icons.vercel.app/$1"
+    },
+    {
+      "source": "/docs/css",
+      "destination": "https://chassis-css.vercel.app/"
+    },
+    {
+      "source": "/docs/tokens",
+      "destination": "https://chassis-tokens.vercel.app/"
+    },
+    {
+      "source": "/docs/figma",
+      "destination": "https://chassis-figma.vercel.app/"
+    },
+    {
+      "source": "/docs/assets",
+      "destination": "https://chassis-assets.vercel.app/"
+    },
+    {
+      "source": "/docs",
+      "destination": "/teaser"
+    },
+    {
+      "source": "/docs/(.*)",
+      "destination": "/teaser"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/teaser",
+      "permanent": false
+    }
+  ]
 }

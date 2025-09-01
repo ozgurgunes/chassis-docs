@@ -30,19 +30,37 @@ const urls = isStaging
       ICONS_URL: 'https://chassis-icons.vercel.app'
     }
 
-// Read template
-const templatePath = path.join(path.dirname(__dirname), 'vercel.template.json')
-let template = fs.readFileSync(templatePath, 'utf8')
+// Read current vercel.json instead of template
+const configPath = path.join(path.dirname(__dirname), 'vercel.json')
+let config = fs.readFileSync(configPath, 'utf8')
 
-// Replace placeholders
+// First restore all placeholders by reversing any existing URLs
+const allUrls = {
+  'https://chassis-assets-staging.vercel.app': '{{ASSETS_URL}}',
+  'https://chassis-assets.vercel.app': '{{ASSETS_URL}}',
+  'https://chassis-css-staging.vercel.app': '{{CSS_URL}}',
+  'https://chassis-css.vercel.app': '{{CSS_URL}}',
+  'https://chassis-tokens-staging.vercel.app': '{{TOKENS_URL}}',
+  'https://chassis-tokens.vercel.app': '{{TOKENS_URL}}',
+  'https://chassis-figma-staging.vercel.app': '{{FIGMA_URL}}',
+  'https://chassis-figma.vercel.app': '{{FIGMA_URL}}',
+  'https://chassis-icons-staging.vercel.app': '{{ICONS_URL}}',
+  'https://chassis-icons.vercel.app': '{{ICONS_URL}}'
+}
+
+// Restore placeholders
+for (const [url, placeholder] of Object.entries(allUrls)) {
+  config = config.replace(new RegExp(url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), placeholder)
+}
+
+// Replace placeholders with environment-specific URLs
 for (const [key, value] of Object.entries(urls)) {
   const placeholder = `{{${key}}}`
-  template = template.replace(new RegExp(placeholder, 'g'), value)
+  config = config.replace(new RegExp(placeholder, 'g'), value)
   console.log(`✅ ${key}: ${value}`)
 }
 
-// Write vercel.json
-const outputPath = path.join(path.dirname(__dirname), 'vercel.json')
-fs.writeFileSync(outputPath, template)
+// Write back to vercel.json
+fs.writeFileSync(configPath, config)
 
 console.log('🎉 Generated vercel.json successfully!')
