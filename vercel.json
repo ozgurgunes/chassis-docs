@@ -20,6 +20,10 @@
       "destination": "https://chassis-figma.vercel.app/$1"
     },
     {
+      "source": "/docs/icons",
+      "destination": "https://chassis-icons.vercel.app/"
+    },
+    {
       "source": "/docs/icons/(.*)",
       "destination": "https://chassis-icons.vercel.app/$1"
     },
