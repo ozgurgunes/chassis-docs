@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "node scripts/generate-vercel-config.js && pnpm build",
+  "buildCommand": "pnpm build",
   "outputDirectory": "_site",
   "rewrites": [
     {
