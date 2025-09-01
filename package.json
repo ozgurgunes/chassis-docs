@@ -5,11 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev --root site",
-    "build:site": "astro build --root site",
     "dev:site": "astro dev --root site --port 4321",
-    "build": "pnpm build:site",
-    "build:website": "node tools/build.js website",
-    "build:examples": "node tools/build.js examples",
+    "build": "node tools/build.js all",
+    "build:site": "astro build --root site",
+    "build:vendor": "node tools/build.js vendor",
     "preview": "astro preview --root site",
     "sync:all": "node scripts/sync-all.js",
     "sync:submodules": "./scripts/update-submodules.sh",
@@ -17,8 +16,6 @@
     "deploy": "node scripts/deploy.js",
     "clean": "node tools/build.js clean",
     "validate": "node tools/build.js validate",
-    "example:vanilla": "node tools/build.js example vanilla-html",
-    "example:react": "node tools/build.js example react-app",
     "test": "echo \"No tests specified\" && exit 0",
     "postinstall": "npm run sync:all"
   },

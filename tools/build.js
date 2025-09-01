@@ -17,8 +17,8 @@ class ChassisBuilder {
   constructor(rootDir = process.cwd()) {
     this.rootDir = rootDir;
     this.vendorDir = path.join(rootDir, 'vendor');
-    this.appsDir = path.join(rootDir, 'apps');
-    this.examplesDir = path.join(rootDir, 'examples');
+    this.siteDir = path.join(rootDir, 'site');
+    this.outputDir = path.join(rootDir, '_site');
   }
 
   log(message, type = 'info') {
@@ -55,8 +55,7 @@ class ChassisBuilder {
     
     const requiredDirs = [
       { path: this.vendorDir, name: 'vendor (submodules)' },
-      { path: this.appsDir, name: 'apps' },
-      { path: this.examplesDir, name: 'examples' }
+      { path: this.siteDir, name: 'site (Astro project)' }
     ];
 
     for (const dir of requiredDirs) {
@@ -68,80 +67,39 @@ class ChassisBuilder {
     }
   }
 
-  buildWebsite() {
-    this.log('Building documentation website...', 'build');
-    const websiteDir = path.join(this.appsDir, 'website');
+  buildSite() {
+    this.log('Building Astro documentation site...', 'build');
     
-    if (!fs.existsSync(websiteDir)) {
-      throw new Error('Website directory not found');
+    if (!fs.existsSync(this.siteDir)) {
+      throw new Error('Site directory not found');
     }
 
-    // Install dependencies
-    this.log('Installing website dependencies...', 'info');
-    this.runCommand('npm install', websiteDir);
+    // Install dependencies using pnpm
+    this.log('Installing dependencies...', 'info');
+    this.runCommand('pnpm install');
 
-    // Build website
-    this.log('Building website...', 'info');
-    this.runCommand('npm run build', websiteDir);
+    // Build Astro site
+    this.log('Building Astro site...', 'info');
+    this.runCommand('pnpm build:site');
     
-    this.log('Website built successfully', 'success');
+    this.log('Astro site built successfully', 'success');
   }
 
-  buildExamples() {
-    this.log('Building all examples...', 'build');
-    
-    if (!fs.existsSync(this.examplesDir)) {
-      this.log('Examples directory not found', 'warning');
-      return;
-    }
-
-    const examples = fs.readdirSync(this.examplesDir)
-      .filter(item => fs.statSync(path.join(this.examplesDir, item)).isDirectory());
-
-    for (const example of examples) {
-      this.buildExample(example);
-    }
-  }
-
-  buildExample(exampleName) {
-    this.log(`Building example: ${exampleName}`, 'info');
-    const exampleDir = path.join(this.examplesDir, exampleName);
-    
-    if (!fs.existsSync(exampleDir)) {
-      this.log(`Example not found: ${exampleName}`, 'error');
-      return;
-    }
-
-    const packageJsonPath = path.join(exampleDir, 'package.json');
-    if (fs.existsSync(packageJsonPath)) {
-      // Install dependencies
-      this.runCommand('npm install', exampleDir);
-      
-      // Build example
-      this.runCommand('npm run build', exampleDir);
-      this.log(`Example built: ${exampleName}`, 'success');
-    } else {
-      this.log(`No package.json found for: ${exampleName}`, 'warning');
-    }
-  }
-
-  updateSubmodules() {
-    this.log('Updating git submodules...', 'info');
+  updateVendorAssets() {
+    this.log('Updating vendor/assets submodule...', 'info');
     
     try {
-      // First try to initialize submodules
-      this.runCommand('git submodule init', '.', true);
-      this.runCommand('git submodule update --remote --merge');
-      this.log('Submodules updated', 'success');
+      // Update specifically the vendor/assets submodule
+      this.runCommand('git submodule update --init --remote vendor/assets');
+      this.log('Vendor assets updated', 'success');
     } catch (error) {
-      this.log('Submodule update failed, trying alternative approach...', 'warning');
+      this.log('Vendor assets update failed, trying sync script...', 'warning');
       
-      // If submodule update fails, try to sync using the sync script
       try {
         this.runCommand('npm run sync:all');
-        this.log('Submodules synced via sync script', 'success');
+        this.log('Vendor assets synced via sync script', 'success');
       } catch (syncError) {
-        this.log('Both submodule update and sync failed', 'error');
+        this.log('Both vendor update and sync failed', 'error');
         throw syncError;
       }
     }
@@ -152,8 +110,8 @@ class ChassisBuilder {
     
     const validationChecks = [
       {
-        path: path.join(this.appsDir, 'website', 'dist'),
-        name: 'Website build output'
+        path: this.outputDir,
+        name: 'Astro build output (_site)'
       },
       {
         path: this.vendorDir,
@@ -174,9 +132,9 @@ class ChassisBuilder {
     this.log('Cleaning build artifacts...', 'info');
     
     const cleanPaths = [
-      path.join(this.appsDir, 'website', 'dist'),
-      path.join(this.appsDir, 'website', 'node_modules'),
-      ...this.getExampleBuildPaths()
+      this.outputDir,
+      path.join(this.rootDir, 'node_modules'),
+      path.join(this.siteDir, 'node_modules')
     ];
 
     for (const cleanPath of cleanPaths) {
@@ -187,30 +145,13 @@ class ChassisBuilder {
     }
   }
 
-  getExampleBuildPaths() {
-    if (!fs.existsSync(this.examplesDir)) return [];
-    
-    const examples = fs.readdirSync(this.examplesDir)
-      .filter(item => fs.statSync(path.join(this.examplesDir, item)).isDirectory());
-
-    const buildPaths = [];
-    for (const example of examples) {
-      buildPaths.push(
-        path.join(this.examplesDir, example, 'dist'),
-        path.join(this.examplesDir, example, 'node_modules')
-      );
-    }
-    return buildPaths;
-  }
-
   buildAll() {
     this.log('Starting complete build process...', 'build');
     
     try {
       this.checkDependencies();
-      this.updateSubmodules();
-      this.buildWebsite();
-      this.buildExamples();
+      this.updateVendorAssets();
+      this.buildSite();
       this.validateBuild();
       
       this.log('🎉 Build completed successfully!', 'success');
@@ -227,33 +168,27 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const builder = new ChassisBuilder();
 
   switch (command) {
-    case 'website':
-      builder.buildWebsite();
+    case 'site': {
+      builder.buildSite();
       break;
-    case 'examples':
-      builder.buildExamples();
+    }
+    case 'vendor': {
+      builder.updateVendorAssets();
       break;
-    case 'example':
-      const exampleName = process.argv[3];
-      if (!exampleName) {
-        console.error('Please specify example name');
-        process.exit(1);
-      }
-      builder.buildExample(exampleName);
-      break;
-    case 'clean':
+    }
+    case 'clean': {
       builder.clean();
       break;
-    case 'sync':
-      builder.updateSubmodules();
-      break;
-    case 'validate':
+    }
+    case 'validate': {
       builder.validateBuild();
       break;
+    }
     case 'all':
-    default:
+    default: {
       builder.buildAll();
       break;
+    }
   }
 }
 
