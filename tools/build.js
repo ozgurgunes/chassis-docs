@@ -113,6 +113,10 @@ class ChassisBuilder {
   validateBuild() {
     this.log('Validating build...', 'info');
     
+    // Debug: Show current working directory and list contents
+    this.log(`Current working directory: ${process.cwd()}`, 'info');
+    this.log(`Checking for output directory at: ${this.outputDir}`, 'info');
+    
     const validationChecks = [
       {
         path: this.outputDir,
@@ -127,6 +131,11 @@ class ChassisBuilder {
     for (const check of validationChecks) {
       if (fs.existsSync(check.path)) {
         this.log(`✓ ${check.name}`, 'success');
+        // Debug: List contents of the directory
+        if (check.path === this.outputDir) {
+          const contents = fs.readdirSync(check.path);
+          this.log(`Contents of ${check.path}: ${contents.join(', ')}`, 'info');
+        }
       } else {
         this.log(`✗ ${check.name}`, 'error');
       }
