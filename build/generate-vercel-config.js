@@ -14,21 +14,21 @@ const isStaging = process.env.VERCEL_GIT_COMMIT_REF === 'staging' ||
 console.log(`🔧 Generating vercel.json for ${isStaging ? 'STAGING' : 'PRODUCTION'} environment`)
 
 // Define URLs based on environment
-const urls = isStaging
-  ? {
-      ASSETS_URL: 'https://chassis-assets-staging.vercel.app',
-      CSS_URL: 'https://chassis-css-staging.vercel.app',
-      TOKENS_URL: 'https://chassis-tokens-staging.vercel.app',
-      FIGMA_URL: 'https://chassis-figma-staging.vercel.app',
-      ICONS_URL: 'https://chassis-icons-staging.vercel.app'
-    }
-  : {
-      ASSETS_URL: 'https://chassis-assets.vercel.app',
-      CSS_URL: 'https://chassis-css.vercel.app',
-      TOKENS_URL: 'https://chassis-tokens.vercel.app',
-      FIGMA_URL: 'https://chassis-figma.vercel.app',
-      ICONS_URL: 'https://chassis-icons.vercel.app'
-    }
+const urls = isStaging ?
+  {
+    ASSETS_URL: 'https://chassis-assets-staging.vercel.app',
+    CSS_URL: 'https://chassis-css-staging.vercel.app',
+    TOKENS_URL: 'https://chassis-tokens-staging.vercel.app',
+    FIGMA_URL: 'https://chassis-figma-staging.vercel.app',
+    ICONS_URL: 'https://chassis-icons-staging.vercel.app'
+  } :
+  {
+    ASSETS_URL: 'https://chassis-assets.vercel.app',
+    CSS_URL: 'https://chassis-css.vercel.app',
+    TOKENS_URL: 'https://chassis-tokens.vercel.app',
+    FIGMA_URL: 'https://chassis-figma.vercel.app',
+    ICONS_URL: 'https://chassis-icons.vercel.app'
+  }
 
 // Read current vercel.json
 const configPath = path.join(path.dirname(__dirname), 'vercel.json')
@@ -50,7 +50,7 @@ const allUrls = {
 
 // Restore placeholders
 for (const [url, placeholder] of Object.entries(allUrls)) {
-  config = config.replace(new RegExp(url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), placeholder)
+  config = config.replace(new RegExp(url.replace(/[$()*+.?[\\\]^{|}]/g, '\\$&'), 'g'), placeholder)
 }
 
 // Replace placeholders with environment-specific URLs

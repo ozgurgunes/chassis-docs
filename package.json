@@ -6,18 +6,15 @@
   "scripts": {
     "dev": "astro dev --root site",
     "dev:site": "astro dev --root site --port 4321",
-    "build": "node tools/build.js all",
+    "build": "node build/build.js all",
     "build:site": "astro build --root site",
-    "build:vendor": "node tools/build.js vendor",
+    "build:vendor": "node build/build.js vendor",
     "preview": "astro preview --root site",
-    "sync:all": "node scripts/sync-all.js",
-    "sync:submodules": "./scripts/update-submodules.sh",
-    "sync:icons": "node scripts/sync-icons.js",
-    "deploy": "node scripts/deploy.js",
-    "clean": "node tools/build.js clean",
-    "validate": "node tools/build.js validate",
+    "sync:submodules": "node build/sync-submodules.js",
+    "clean": "node build/build.js clean",
+    "validate": "node build/build.js validate",
     "test": "echo \"No tests specified\" && exit 0",
-    "postinstall": "npm run sync:all"
+    "postinstall": "npm run sync:submodules"
   },
   "keywords": [
     "design-system",
