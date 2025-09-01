@@ -96,9 +96,18 @@ class ChassisBuilder {
       this.runCommand('git -C vendor/assets checkout app/docs', '.', true);
       this.runCommand('git -C vendor/assets pull origin app/docs', '.', true);
       
-      // Verify the submodule content
-      this.log('Verifying vendor/assets content...', 'info');
+      // Build the vendor/assets project to generate dist files
+      this.log('Building vendor/assets project...', 'info');
       const vendorAssetsPath = path.join(this.rootDir, 'vendor/assets');
+      
+      // Install dependencies in vendor/assets
+      this.runCommand('pnpm install', vendorAssetsPath);
+      
+      // Build the assets
+      this.runCommand('pnpm build', vendorAssetsPath);
+      
+      // Verify the build output
+      this.log('Verifying vendor/assets build output...', 'info');
       const expectedPath = path.join(vendorAssetsPath, 'dist/web/chassis-docs');
       
       if (fs.existsSync(expectedPath)) {
@@ -107,9 +116,21 @@ class ChassisBuilder {
       } else {
         this.log(`⚠️  Expected path not found: ${expectedPath}`, 'warning');
         this.log(`Available in vendor/assets: ${fs.readdirSync(vendorAssetsPath).join(', ')}`, 'info');
+        
+        // Check if there's a build directory
+        const buildPath = path.join(vendorAssetsPath, 'build');
+        if (fs.existsSync(buildPath)) {
+          this.log(`Available in build/: ${fs.readdirSync(buildPath).join(', ')}`, 'info');
+        }
+        
+        // Check if there's a _site directory (built output)
+        const sitePath = path.join(vendorAssetsPath, '_site');
+        if (fs.existsSync(sitePath)) {
+          this.log(`Available in _site/: ${fs.readdirSync(sitePath).join(', ')}`, 'info');
+        }
       }
       
-      this.log('Vendor assets updated to app/docs branch', 'success');
+      this.log('Vendor assets updated and built successfully', 'success');
     } catch (error) {
       this.log('Vendor assets update failed, trying sync script...', 'warning');
       
