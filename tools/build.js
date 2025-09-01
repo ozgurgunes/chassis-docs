@@ -174,6 +174,19 @@ class ChassisBuilder {
         this.log(`✗ ${check.name}`, 'error');
       }
     }
+    
+    // Final verification for Vercel: Ensure _site is accessible at project root
+    const rootSiteDir = path.join(process.cwd(), '_site');
+    if (this.outputDir !== rootSiteDir && !fs.existsSync(rootSiteDir)) {
+      this.log('Creating _site reference at project root for Vercel...', 'info');
+      try {
+        // Copy instead of symlink to avoid Vercel issues
+        this.runCommand(`cp -r "${this.outputDir}" "${rootSiteDir}"`);
+        this.log('✓ _site directory created at project root', 'success');
+      } catch (error) {
+        this.log(`Warning: Could not create _site at root: ${error.message}`, 'warn');
+      }
+    }
   }
 
   clean() {

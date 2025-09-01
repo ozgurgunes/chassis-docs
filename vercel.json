@@ -1,8 +1,9 @@
 {
   "version": 2,
   "buildCommand": "pnpm build",
-  "outputDirectory": "./_site",
+  "outputDirectory": "_site",
   "installCommand": "pnpm install",
+  "framework": null,
   "rewrites": [
     {
       "source": "/docs/assets/(.*)",
