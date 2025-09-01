@@ -8,9 +8,6 @@ node_modules/
 .vscode/
 .idea/
 
-# Vercel (dynamically generated)
-vercel.json
-
 # Icon Distribution (generated files)
 icons/package/
 

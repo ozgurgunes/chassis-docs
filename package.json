@@ -17,7 +17,7 @@
     "clean": "node tools/build.js clean",
     "validate": "node tools/build.js validate",
     "test": "echo \"No tests specified\" && exit 0",
-    "postinstall": "npm run sync:all && node scripts/generate-vercel-config.js"
+    "postinstall": "npm run sync:all"
   },
   "keywords": [
     "design-system",
