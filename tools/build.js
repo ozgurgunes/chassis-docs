@@ -96,6 +96,19 @@ class ChassisBuilder {
       this.runCommand('git -C vendor/assets checkout app/docs', '.', true);
       this.runCommand('git -C vendor/assets pull origin app/docs', '.', true);
       
+      // Verify the submodule content
+      this.log('Verifying vendor/assets content...', 'info');
+      const vendorAssetsPath = path.join(this.rootDir, 'vendor/assets');
+      const expectedPath = path.join(vendorAssetsPath, 'dist/web/chassis-docs');
+      
+      if (fs.existsSync(expectedPath)) {
+        const contents = fs.readdirSync(expectedPath);
+        this.log(`✓ Found chassis-docs assets: ${contents.join(', ')}`, 'success');
+      } else {
+        this.log(`⚠️  Expected path not found: ${expectedPath}`, 'warning');
+        this.log(`Available in vendor/assets: ${fs.readdirSync(vendorAssetsPath).join(', ')}`, 'info');
+      }
+      
       this.log('Vendor assets updated to app/docs branch', 'success');
     } catch (error) {
       this.log('Vendor assets update failed, trying sync script...', 'warning');
