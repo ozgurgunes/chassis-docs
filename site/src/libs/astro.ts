@@ -2,7 +2,35 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { rehypeHeadingIds } from '@astrojs/markdown-remark'
 import mdx from '@astrojs/mdx'
-import sitemap from '@astrojs/sitemap'
+import site// Copy the `icons` folder from the current project to make it available from the `/docs/${docs_version}/dist` URL.
+function copyChassisCSS() {
+  const source = getChassisCSSFsPath()
+  const destination = path.join(getDocsPublicFsPath(), 'assets')
+
+  // Check if source directory exists before copying
+  if (!fs.existsSync(source)) {
+    console.warn(`⚠️  Chassis CSS not found at ${source}, skipping copy`)
+    return
+  }
+
+  fs.mkdirSync(destination, { recursive: true })
+  fs.cpSync(source, destination, { recursive: true })
+}
+
+// Copy the `icons` folder from the current project to make it available from the `/icons` URL.
+function copyChassisIcons() {
+  const source = getChassisIconsFsPath()
+  const destination = path.join(getDocsPublicFsPath(), 'assets', 'icons')
+
+  // Check if source directory exists before copying
+  if (!fs.existsSync(source)) {
+    console.warn(`⚠️  Chassis icons not found at ${source}, skipping copy`)
+    return
+  }
+
+  fs.mkdirSync(destination, { recursive: true })
+  fs.cpSync(source, destination, { recursive: true })
+}s/sitemap'
 import type { AstroIntegration } from 'astro'
 import autoImport from 'astro-auto-import'
 import type { Element } from 'hast'
@@ -144,8 +172,12 @@ function copyChassisAssets() {
   const source = getChassisAssetsFsPath()
   const destination = path.join(getDocsPublicFsPath(), 'assets')
 
-  // fs.mkdirSync(destination, { recursive: true })
-  // copyStaticRecursively(source, destination)
+  // Check if source directory exists before copying
+  if (!fs.existsSync(source)) {
+    console.warn(`⚠️  Chassis assets not found at ${source}, skipping copy`)
+    return
+  }
+
   fs.mkdirSync(destination, { recursive: true })
   fs.cpSync(source, destination, { recursive: true })
 }

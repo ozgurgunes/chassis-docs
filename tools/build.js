@@ -89,9 +89,14 @@ class ChassisBuilder {
     this.log('Updating vendor/assets submodule...', 'info');
     
     try {
-      // Update specifically the vendor/assets submodule
+      // Initialize and update the vendor/assets submodule on the app/docs branch
       this.runCommand('git submodule update --init --remote vendor/assets');
-      this.log('Vendor assets updated', 'success');
+      
+      // Ensure we're on the correct branch (app/docs)
+      this.runCommand('git -C vendor/assets checkout app/docs', '.', true);
+      this.runCommand('git -C vendor/assets pull origin app/docs', '.', true);
+      
+      this.log('Vendor assets updated to app/docs branch', 'success');
     } catch (error) {
       this.log('Vendor assets update failed, trying sync script...', 'warning');
       
