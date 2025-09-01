@@ -17,7 +17,7 @@ const site = isDev
 
 // https://astro.build/config
 export default defineConfig({
-  outDir: '../_site',
+  outDir: './dist',
   build: {
     assets: `assets`
   },
