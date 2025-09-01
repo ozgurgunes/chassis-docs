@@ -1,28 +1,24 @@
 {
   "version": 2,
-  "buildCommand": "pnpm build",
-  "outputDirectory": "_site",
-  "installCommand": "pnpm install",
-  "framework": null,
   "rewrites": [
     {
-      "source": "/docs/assets/(.*)",
+      "source": "/chassis-assets/(.*)",
       "destination": "https://chassis-assets.vercel.app/$1"
     },
     {
-      "source": "/docs/css/(.*)",
+      "source": "/chassis-css/(.*)",
       "destination": "https://chassis-css.vercel.app/$1"
     },
     {
-      "source": "/docs/tokens/(.*)",
+      "source": "/chassis-tokens/(.*)",
       "destination": "https://chassis-tokens.vercel.app/$1"
     },
     {
-      "source": "/docs/figma/(.*)",
+      "source": "/chassis-figma/(.*)",
       "destination": "https://chassis-figma.vercel.app/$1"
     },
     {
-      "source": "/docs/icons/(.*)",
+      "source": "/icons/(.*)",
       "destination": "https://chassis-icons.vercel.app/$1"
     },
     {
