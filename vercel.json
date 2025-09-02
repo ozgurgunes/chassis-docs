@@ -42,21 +42,6 @@
     {
       "source": "/docs/assets",
       "destination": "https://chassis-assets.vercel.app/"
-    },
-    {
-      "source": "/docs",
-      "destination": "/teaser"
-    },
-    {
-      "source": "/docs/(.*)",
-      "destination": "/teaser"
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/",
-      "destination": "/teaser",
-      "permanent": false
     }
   ]
 }

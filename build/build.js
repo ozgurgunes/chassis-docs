@@ -75,26 +75,9 @@ class ChassisBuilder {
     this.log('Installing dependencies...', 'info')
     this.runCommand('pnpm install')
 
-    // Build Astro site
+    // Build Astro site (outputs directly to _site via outDir config)
     this.log('Building Astro site...', 'info')
     this.runCommand('pnpm build:site')
-
-    // Copy from site/dist to _site for Vercel compatibility
-    const siteDistDir = path.join(this.siteDir, 'dist')
-    if (fs.existsSync(siteDistDir)) {
-      this.log('Copying build output to _site...', 'info')
-
-      // Remove existing _site directory if it exists
-      if (fs.existsSync(this.outputDir)) {
-        fs.rmSync(this.outputDir, { recursive: true, force: true })
-      }
-
-      // Copy site/dist to _site
-      this.runCommand(`cp -r "${siteDistDir}" "${this.outputDir}"`)
-      this.log('✓ Build output copied to _site', 'success')
-    } else {
-      throw new Error(`Build output not found at ${siteDistDir}`)
-    }
 
     this.log('Astro site built successfully', 'success')
   }
