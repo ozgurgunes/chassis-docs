@@ -1,23 +1,17 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import ResponsiveImage from "@layouts/partials/ResponsiveImage.astro";
+import ResponsiveImage from "@components/ResponsiveImage.astro";
+import HomeHero from "@layouts/partials/HomeHero.astro";
+import HomeGallery from "@layouts/partials/HomeGallery.astro";
+import HomeSingleSource from "@layouts/partials/HomeSingleSource.astro";
+import HomeCarousel from "@layouts/partials/HomeCarousel.astro";
+import HomeModularity from "@layouts/partials/HomeModularity.astro";
 ---
 
 <BaseLayout {...Astro.props} layout="docs">
-  <div class="container d-flex vh-100 align-items-center py-6xlarge">
-    <div class="row py-6xlarge mt-n6xlarge">
-      <div class="col-8 offset-2 text-center py-6xlarge mt-n6xlarge">
-        <ResponsiveImage imgPath="/assets/logo/chassis-logo-brand.png" alt="Chassis UI" classes="mb-5xlarge" />
-        <h1 class="font-hero mb-4xlarge"><span class="text-nowrap">Build Better Design Systems.</span> In Sync. At Scale.</h1>
-        <p class="font-lead">
-          Chassis is the backbone of scalable design systems built for complex,
-          evolving product ecosystems. It unifies Figma components, advanced
-          design tokens, multi-platform transformers, asset libraries, and a
-          fully token-synced CSS framework — all working in harmony across
-          brands, platforms, and products.
-        </p>
-        <button class="button primary">Get Started</button>
-      </div>
-    </div>
-  </div>
+  <HomeHero />
+  <HomeGallery />
+  <HomeSingleSource />
+  <HomeCarousel />
+  <HomeModularity />
 </BaseLayout>

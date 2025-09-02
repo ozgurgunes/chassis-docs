@@ -16,7 +16,7 @@ const content = await Astro.slots.render('default')
 <li class="nav-item col-6 col-large-auto">
   <a
     aria-current={active ? true : undefined}
-    class:list={['nav-link py-2xsmall px-0 px-large-2', className, { active }]}
+    class:list={['nav-link', className, { active }]}
     {...props}
   >
     <slot />

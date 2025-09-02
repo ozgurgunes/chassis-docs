@@ -7,7 +7,8 @@ import HamburgerIcon from '@components/svgs/HamburgerIcon.astro'
 import LinkItem from '@components/header/LinkItem.astro'
 import OpenCollectiveIcon from '@components/svgs/OpenCollectiveIcon.astro'
 import XIcon from '@components/svgs/XIcon.astro'
-import ThemeToggler from '@layouts/partials/ThemeToggler.astro'
+import ThemeToggler from '@components/ThemeToggler.astro'
+import NavDocsMenu from '@components/NavDocsMenu.astro'
 
 interface Props {
   layout: Layout
@@ -38,8 +39,8 @@ const { layout, title } = Astro.props
     }
     {layout !== 'docs' && <div class="d-large-none" style="width: 4.25rem;" />}
 
-    <a class="navbar-brand p-0 me-0 me-large-2" href="/" aria-label="Chassis">
-      <img src="/assets/logo/chassis-icon-white-banner.svg" alt="Chassis UI" width="32" height="32" />
+    <a class="navbar-brand me-large-medium" href="/" aria-label="Chassis">
+      <img src="/assets/logo/chassis-logo-brand.svg" alt="Chassis UI" width="123" height="32" />
     </a>
 
     <div class="d-flex">
@@ -75,10 +76,11 @@ const { layout, title } = Astro.props
 
       <div class="offcanvas-body p-large pt-0 p-large-0">
         <hr class="d-large-none text-white-50" />
-        <ul class="navbar-nav flex-row flex-wrap cxd-navbar-nav py-xsmall">
-          <LinkItem active={layout === 'docs'} href={'getting-started/introduction/'} track>
-            Docs
-          </LinkItem>
+        <ul class="navbar-nav flex-row flex-wrap cxd-navbar-nav mx-0 mx-large-medium">
+          <LinkItem active={title === 'home'} href="/" track>Home</LinkItem>
+          <li class="nav-item dropdown">
+            <NavDocsMenu layout={layout} />
+          </li>
           <LinkItem active={layout === 'icons'} href="/icons" track>Icons</LinkItem>
           <LinkItem active={title === 'Tokens'} href="/tokens" track>Themes</LinkItem>
           <LinkItem active={title === 'Examples'} href={'examples/'} track>Examples</LinkItem>
@@ -89,27 +91,13 @@ const { layout, title } = Astro.props
 
         <ul class="navbar-nav flex-row flex-wrap ms-medium-auto align-items-center">
           <LinkItem class="nav-link px-0 px-large-2" href={getConfig().github_org} target="_blank" rel="noopener">
-            <GitHubIcon class="navbar-nav-svg" height={16} width={16} />
+            <GitHubIcon class="icon icon-default icon-small" height={16} width={16} />
             <small class="d-large-none ms-xsmall">GitHub</small>
           </LinkItem>
-          <LinkItem
-            class="nav-link px-0 px-large-2"
-            href={`https://x.com/${getConfig().x}`}
-            target="_blank"
-            rel="noopener"
-          >
-            <XIcon class="navbar-nav-svg" height={16} width={16} />
+          <LinkItem class="nav-link px-0 px-large-2" href={getConfig().github_org} target="_blank" rel="noopener">
+            <XIcon class="icon icon-default icon-small" height={16} width={16} />
             <small class="d-large-none ms-xsmall">X</small>
           </LinkItem>
-          <LinkItem class="nav-link px-0 px-large-2" href={getConfig().opencollective} target="_blank" rel="noopener">
-            <OpenCollectiveIcon class="navbar-nav-svg" height={16} width={16} />
-            <small class="d-large-none ms-xsmall">Open Collective</small>
-          </LinkItem>
-          <li class="nav-item col-12 col-large-auto">
-            <div class="vr d-none d-large-flex h-100 mx-large-2 text-white"></div>
-            <hr class="d-large-none my-xsmall text-white-50" />
-          </li>
-
           <li class="nav-item col-12 col-large-auto">
             <div class="vr d-none d-large-flex h-100 mx-large-2 text-white"></div>
             <hr class="d-large-none my-xsmall text-white-50" />

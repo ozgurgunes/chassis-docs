@@ -1,3 +1,4 @@
+@use "../../../node_modules/@ozgurgunes/chassis-tokens/dist/tokens/web/chassis-docs/template-large-numbers.scss" as large;
 // $prefix: cx- !default;
 /*!
  * Chassis - CSS Docs (https://ozgurgunes.github.io/chassis-css//)
@@ -86,3 +87,26 @@ $enable-cssgrid: true;
   colorPrimary: $cx-color-base-context-light-primary-base-color;
 }
 // stylelint-enable
+
+/* Hide light-mode things when in dark mode */
+[data-cx-theme=dark] .display-light {
+    display: none;
+}
+/* Hide dark-mode things when in light mode */
+[data-cx-theme=light] .display-dark {
+    display: none;
+}
+
+.section-main {
+  width: 592px;
+}
+
+.vh-full {
+  height: calc(100vh - 64px);
+}
+.vh-50 {
+  height: 50vh
+}
+.vh-75 {
+  height: 75vh
+}

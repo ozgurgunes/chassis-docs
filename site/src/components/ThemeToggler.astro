@@ -9,7 +9,7 @@ const { layout } = Astro.props
 ---
 
 <button
-  class=`button ${layout === 'examples' ? 'button-cxd-primary' : 'link nav-link px-0 px-large-2'} py-2xsmall dropdown-toggle d-flex align-items-center`
+  class=`nav-link dropdown-toggle`
   id="cxd-theme"
   type="button"
   aria-expanded="false"
@@ -17,7 +17,7 @@ const { layout } = Astro.props
   {...layout !== 'examples' ? { 'data-cx-display': 'static' } : {}}
   aria-label="Toggle theme (auto)"
 >
-  <svg class="bi my-2xsmall theme-icon-active" aria-hidden="true"><use href="#circle-half-solid"></use></svg>
+  <svg class="icon theme-icon-active" aria-hidden="true"><use href="#circle-half-solid"></use></svg>
   <span class=`${layout === 'examples' ? 'visually-hidden' : 'd-large-none ms-xsmall'}` id="cxd-theme-text">Toggle theme</span>
 </button>
 <ul class=`dropdown-menu dropdown-menu-end${layout === 'examples' ? ' shadow' : ''}` aria-labelledby="cxd-theme-text">
