@@ -4,10 +4,13 @@ const fs = require('fs');
 const path = require('path');
 
 // Determine environment from Vercel environment variables
+// Preview deployments from staging branch should use staging URLs
 const isProduction = process.env.VERCEL_ENV === 'production';
-const isStaging = process.env.VERCEL_GIT_COMMIT_REF === 'staging' || 
+const isPreview = process.env.VERCEL_ENV === 'preview';
+const branchName = process.env.VERCEL_GIT_COMMIT_REF || '';
+const isStaging = branchName.includes('staging') || 
                  process.env.VERCEL_URL?.includes('staging') ||
-                 process.env.VERCEL_BRANCH_URL?.includes('staging');
+                 (isPreview && branchName === 'staging');
 
 console.log(`🔧 Setting up URLs for environment:`);
 console.log(`   VERCEL_ENV: ${process.env.VERCEL_ENV}`);
