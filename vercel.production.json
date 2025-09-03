@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "buildCommand": "pnpm build",
+  "outputDirectory": "_site",
+  "rewrites": [
+    {
+      "source": "/docs/assets/:path*",
+      "destination": "https://chassis-assets.vercel.app/:path*"
+    },
+    {
+      "source": "/docs/css/:path*",
+      "destination": "https://chassis-css.vercel.app/:path*"
+    },
+    {
+      "source": "/docs/tokens/:path*",
+      "destination": "https://chassis-tokens.vercel.app/:path*"
+    },
+    {
+      "source": "/docs/figma/:path*",
+      "destination": "https://chassis-figma.vercel.app/:path*"
+    },
+    {
+      "source": "/docs/icons/:path*",
+      "destination": "https://chassis-icons.vercel.app/docs/icons/:path*"
+    },
+    {
+      "source": "/assets/icons/:path*",
+      "destination": "https://chassis-icons.vercel.app/assets/:path*"
+    }
+  ]
+}
