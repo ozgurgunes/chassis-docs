@@ -1,37 +1,116 @@
 # Vercel Environment Configuration
 
-This project uses **branch-specific configuration** for environment-based URL rewriting to external resources like assets, CSS, tokens, and icons.
+This document describes how we handle environment-specific URL routing for the Chassis documentation site.
 
-## How it Works
+## Problem
 
-The solution uses **different `vercel.json` files committed to each git branch**:
+The Chassis documentation needs to route requests to different microservices depending on the environment:
 
-1. **Staging Branch**: `vercel.json` contains staging URLs (e.g., `chassis-icons-staging.vercel.app`)
-2. **Main Branch**: `vercel.json` contains production URLs (e.g., `chassis-icons.vercel.app`)
-3. **Vercel Deployment**: Reads the appropriate `vercel.json` directly from each branch
+- **Production**: `chassis-ui.com/docs/icons` → `chassis-icons.vercel.app/docs/icons`
+- **Staging**: `staging.chassis-ui.com/docs/icons` → `chassis-icons-staging.vercel.app/docs/icons`
 
-## Branch Configuration
+## Solution: Host Header Conditional Rewrites
 
-### Staging Branch (`staging`)
-- Uses `-staging` suffixed URLs for all external services
-- `staging.chassis-ui.com/docs/icons` → `chassis-icons-staging.vercel.app/docs/icons`
-- Similar mapping for assets, css, tokens, and figma with `-staging` suffix
+We use Vercel's conditional rewrite functionality to detect the requesting domain and route to the appropriate services. This approach works seamlessly with git merge workflows without requiring manual intervention.
 
-### Production Branch (`main`)
-- Uses production URLs for all external services
-- `chassis-ui.com/docs/icons` → `chassis-icons.vercel.app/docs/icons`
-- Similar mapping for all other resources without suffix
+### How It Works
+
+The `vercel.json` file contains conditional rewrites that:
+1. Check the `host` header of incoming requests
+2. Route staging domain requests (`staging.chassis-ui.com`) to staging services
+3. Let production requests fall through to production services
+
+### Configuration Structure
+
+Each service has two rewrite rules in `vercel.json`:
+
+```json
+{
+  "rewrites": [
+    {
+      "source": "/docs/icons/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "host", 
+          "value": "staging.chassis-ui.com"
+        }
+      ],
+      "destination": "https://chassis-icons-staging.vercel.app/docs/icons/:path*"
+    },
+    {
+      "source": "/docs/icons/:path*",
+      "destination": "https://chassis-icons.vercel.app/docs/icons/:path*"
+    }
+  ]
+}
+```
+
+**How the rules work:**
+1. **First rule**: If `host` header equals `staging.chassis-ui.com`, route to staging service
+2. **Second rule**: Fallback rule for all other domains (production)
 
 ## URL Mapping
 
-| Path | Staging Destination | Production Destination |
-|------|-------------------|----------------------|
-| `/docs/assets/:path*` | `chassis-assets-staging.vercel.app/:path*` | `chassis-assets.vercel.app/:path*` |
-| `/docs/css/:path*` | `chassis-css-staging.vercel.app/:path*` | `chassis-css.vercel.app/:path*` |
-| `/docs/tokens/:path*` | `chassis-tokens-staging.vercel.app/:path*` | `chassis-tokens.vercel.app/:path*` |
-| `/docs/figma/:path*` | `chassis-figma-staging.vercel.app/:path*` | `chassis-figma.vercel.app/:path*` |
-| `/docs/icons/:path*` | `chassis-icons-staging.vercel.app/docs/icons/:path*` | `chassis-icons.vercel.app/docs/icons/:path*` |
-| `/assets/icons/:path*` | `chassis-icons-staging.vercel.app/assets/:path*` | `chassis-icons.vercel.app/assets/:path*` |
+| Path | Staging Domain | Production Domain |
+|------|----------------|-------------------|
+| `/docs/assets/:path*` | `chassis-assets-staging.vercel.app` | `chassis-assets.vercel.app` |
+| `/docs/css/:path*` | `chassis-css-staging.vercel.app` | `chassis-css.vercel.app` |
+| `/docs/tokens/:path*` | `chassis-tokens-staging.vercel.app` | `chassis-tokens.vercel.app` |
+| `/docs/figma/:path*` | `chassis-figma-staging.vercel.app` | `chassis-figma.vercel.app` |
+| `/docs/icons/:path*` | `chassis-icons-staging.vercel.app/docs/icons/` | `chassis-icons.vercel.app/docs/icons/` |
+| `/assets/icons/:path*` | `chassis-icons-staging.vercel.app/assets/` | `chassis-icons.vercel.app/assets/` |
+
+## Development Workflow
+
+### Working with Staging
+1. Work on the `staging` branch
+2. Push changes → Deploys to `staging.chassis-ui.com`
+3. URLs automatically route to `-staging` services due to domain detection
+
+### Production Release
+1. Merge `staging` branch to `main` 
+2. Push to `main` → Deploys to `chassis-ui.com`
+3. URLs automatically route to production services due to domain detection
+4. **No manual configuration changes needed!** 🎉
+
+## Benefits
+
+✅ **Single Configuration**: One `vercel.json` works for both environments  
+✅ **Merge-Safe**: No manual editing required during staging→main merges  
+✅ **Domain-Based**: Routing happens automatically based on the requesting domain  
+✅ **Maintainable**: Changes apply to both environments simultaneously  
+
+## Technical Details
+
+### Vercel Configuration
+- Uses `"type": "header", "key": "host"` to detect the requesting domain
+- Follows Vercel's documented conditional rewrite patterns
+- Works in production deployments (not in `vercel dev` locally)
+
+### Limitations
+- **Local Development**: Conditional rewrites don't work with `vercel dev` 
+- **Testing**: Must test on actual staging/production URLs, not localhost
+
+## Verification Commands
+
+Test staging environment:
+```bash
+curl -I https://staging.chassis-ui.com/docs/icons/
+# Should show 401/404 from chassis-icons-staging.vercel.app
+```
+
+Test production environment:
+```bash
+curl -I https://chassis-ui.com/docs/icons/
+# Should show 401/404 from chassis-icons.vercel.app  
+```
+
+## Configuration Files Reference
+
+- **`vercel.json`** - Main configuration with conditional rewrites
+- **`vercel.staging.json`** - Template/backup for staging-specific config
+- **`vercel.production.json`** - Template/backup for production-specific config
 
 ## Development Workflow
 
