@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "pnpm build",
+  "buildCommand": "node build/generate-vercel-urls.cjs && pnpm build",
   "outputDirectory": "_site",
   "rewrites": [
     {
@@ -21,7 +21,11 @@
     },
     {
       "source": "/docs/icons/:path*",
-      "destination": "https://chassis-icons.vercel.app/:path*"
+      "destination": "https://chassis-icons.vercel.app/docs/icons/:path*"
+    },
+    {
+      "source": "/assets/icons/:path*",
+      "destination": "https://chassis-icons.vercel.app/assets/:path*"
     }
   ]
 }
