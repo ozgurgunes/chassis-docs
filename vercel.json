@@ -5,30 +5,6 @@
   "rewrites": [
     {
       "source": "/docs/assets/:path*",
-      "destination": "https://chassis-assets.vercel.app/:path*"
-    },
-    {
-      "source": "/docs/css/:path*",
-      "destination": "https://chassis-css.vercel.app/:path*"
-    },
-    {
-      "source": "/docs/tokens/:path*",
-      "destination": "https://chassis-tokens.vercel.app/:path*"
-    },
-    {
-      "source": "/docs/figma/:path*",
-      "destination": "https://chassis-figma.vercel.app/:path*"
-    },
-    {
-      "source": "/docs/icons/:path*",
-      "destination": "https://chassis-icons.vercel.app/docs/icons/:path*"
-    },
-    {
-      "source": "/assets/cx-icons/:path*",
-      "destination": "https://chassis-icons.vercel.app/assets/cx-icons/:path*"
-    },
-    {
-      "source": "/docs/assets/:path*",
       "has": [
         {
           "type": "header",
@@ -37,6 +13,10 @@
         }
       ],
       "destination": "https://chassis-assets-staging.vercel.app/:path*"
+    },
+    {
+      "source": "/docs/assets/:path*",
+      "destination": "https://chassis-assets.vercel.app/:path*"
     },
     {
       "source": "/docs/css/:path*",
@@ -50,6 +30,10 @@
       "destination": "https://chassis-css-staging.vercel.app/:path*"
     },
     {
+      "source": "/docs/css/:path*",
+      "destination": "https://chassis-css.vercel.app/:path*"
+    },
+    {
       "source": "/docs/tokens/:path*",
       "has": [
         {
@@ -59,6 +43,10 @@
         }
       ],
       "destination": "https://chassis-tokens-staging.vercel.app/:path*"
+    },
+    {
+      "source": "/docs/tokens/:path*",
+      "destination": "https://chassis-tokens.vercel.app/:path*"
     },
     {
       "source": "/docs/figma/:path*",
@@ -72,6 +60,10 @@
       "destination": "https://chassis-figma-staging.vercel.app/:path*"
     },
     {
+      "source": "/docs/figma/:path*",
+      "destination": "https://chassis-figma.vercel.app/:path*"
+    },
+    {
       "source": "/docs/icons/:path*",
       "has": [
         {
@@ -83,6 +75,10 @@
       "destination": "https://chassis-icons-staging.vercel.app/docs/icons/:path*"
     },
     {
+      "source": "/docs/icons/:path*",
+      "destination": "https://chassis-icons.vercel.app/docs/icons/:path*"
+    },
+    {
       "source": "/assets/cx-icons/:path*",
       "has": [
         {
@@ -92,6 +88,10 @@
         }
       ],
       "destination": "https://chassis-icons-staging.vercel.app/assets/cx-icons/:path*"
+    },
+    {
+      "source": "/assets/icons/:path*",
+      "destination": "https://chassis-icons.vercel.app/assets/cx-icons/:path*"
     }
   ]
 }
