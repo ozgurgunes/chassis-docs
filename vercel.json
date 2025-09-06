@@ -79,7 +79,7 @@
       "destination": "https://chassis-icons.vercel.app/docs/icons/:path*"
     },
     {
-      "source": "/assets/cx-icons/:path*",
+      "source": "/assets/icons-docs/:path*",
       "has": [
         {
           "type": "header",
@@ -87,11 +87,11 @@
           "value": "staging.chassis-ui.com"
         }
       ],
-      "destination": "https://chassis-icons-staging.vercel.app/assets/cx-icons/:path*"
+      "destination": "https://chassis-icons-staging.vercel.app/assets/icons-docs/:path*"
     },
     {
-      "source": "/assets/icons/:path*",
-      "destination": "https://chassis-icons.vercel.app/assets/cx-icons/:path*"
+      "source": "/assets/icons-docs/:path*",
+      "destination": "https://chassis-icons.vercel.app/assets/icons-docs/:path*"
     }
   ]
 }
