@@ -5,7 +5,29 @@
   "rewrites": [
     {
       "source": "/docs/assets/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "host",
+          "value": "staging.chassis-ui.com"
+        }
+      ],
+      "destination": "https://chassis-assets-staging.vercel.app/:path*"
+    },
+    {
+      "source": "/docs/assets/:path*",
       "destination": "https://chassis-assets.vercel.app/:path*"
+    },
+    {
+      "source": "/docs/css/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "host",
+          "value": "staging.chassis-ui.com"
+        }
+      ],
+      "destination": "https://chassis-css-staging.vercel.app/:path*"
     },
     {
       "source": "/docs/css/:path*",
@@ -13,7 +35,29 @@
     },
     {
       "source": "/docs/tokens/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "host",
+          "value": "staging.chassis-ui.com"
+        }
+      ],
+      "destination": "https://chassis-tokens-staging.vercel.app/:path*"
+    },
+    {
+      "source": "/docs/tokens/:path*",
       "destination": "https://chassis-tokens.vercel.app/:path*"
+    },
+    {
+      "source": "/docs/figma/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "host",
+          "value": "staging.chassis-ui.com"
+        }
+      ],
+      "destination": "https://chassis-figma-staging.vercel.app/:path*"
     },
     {
       "source": "/docs/figma/:path*",
@@ -21,7 +65,33 @@
     },
     {
       "source": "/docs/icons/:path*",
-      "destination": "https://chassis-icons.vercel.app/:path*"
+      "has": [
+        {
+          "type": "header",
+          "key": "host",
+          "value": "staging.chassis-ui.com"
+        }
+      ],
+      "destination": "https://chassis-icons-staging.vercel.app/docs/icons/:path*"
+    },
+    {
+      "source": "/docs/icons/:path*",
+      "destination": "https://chassis-icons.vercel.app/docs/icons/:path*"
+    },
+    {
+      "source": "/assets/icons-docs/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "host",
+          "value": "staging.chassis-ui.com"
+        }
+      ],
+      "destination": "https://chassis-icons-staging.vercel.app/assets/icons-docs/:path*"
+    },
+    {
+      "source": "/assets/icons-docs/:path*",
+      "destination": "https://chassis-icons.vercel.app/assets/icons-docs/:path*"
     }
   ]
 }
